@@ -11,7 +11,7 @@ Since many students are facing the same issues and struggling with code performa
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
 ## The Problem:
-Delay() acts like a wait function. Below I've provided an alternative to the delay function which directly use millis().
+The delay() function act like a "wait" function. Below I've provided an alternative to the delay function which directly use millis().
 ```C++
 // Avoid using sequential delay when possible
 void wait(unsigned long delay){
