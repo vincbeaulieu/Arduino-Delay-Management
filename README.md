@@ -10,7 +10,7 @@ Since many students are facing the same issues and struggling with code performa
 [2]: https://forum.arduino.cc/t/which-timer-used-on-mega-for-delay-and-delaymicroseconds/420641/2
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
-## The Problem: (sequential delay)
+## The Problem: Sequential Delay
 The delay() function acts like a wait in your program. It is sequential, it halt the program entirely and nothing else can be executed in the mean time. Using such delay's are bad practice has they drastically reduce the capabilities and performances of a system. Below I've provided an alternative to the delay() function which directly use millis(), ***but try to avoid using it, or using delay().***
 ```C++
 // Avoid using sequential delay when possible
@@ -27,4 +27,4 @@ The millis() function is a function that keep tracks of the current_time. Whenev
 ```C++
 #define current_time millis()
 ```
-
+## The Solution: Delay Traking and Management Routine
