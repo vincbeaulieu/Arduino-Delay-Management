@@ -10,8 +10,8 @@ Since many students are facing the same issues and struggling with code performa
 [2]: https://forum.arduino.cc/t/which-timer-used-on-mega-for-delay-and-delaymicroseconds/420641/2
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
-## The Problem:
-The delay() function act like a "wait" function. Below I've provided an alternative to the delay function which directly use millis().
+## The Problem: (sequential delay)
+The delay() function acts like a wait in your program. It is sequential and halt the program entirely, nothing else can execute in the mean time. Using such delay's are bad practice has they drastically reduce the capabilities and performances of your program. Below I've provided as an alternative to the delay() function which directly use millis(). **But try to avoid using it.**
 ```C++
 // Avoid using sequential delay when possible
 void wait(unsigned long delay){
@@ -19,7 +19,7 @@ void wait(unsigned long delay){
     while(millis() < previous_time + delay); // Wait until time has elapsed
 }
 ```
-When the above code is executed, we save the *current_time* given by *millis()*, into the variable named *previous_time*. Then, a while loop is execute as long as the condition *current_time < previous_time + delay* is true, emulating a "wait" in your program.
+When the above code is executed, we save the *current_time* given by *millis()*, into the variable named *previous_time*. Then, a while loop is execute as long as the condition *current_time < previous_time + delay* is true, emulating a "wait" in your program. These are often useful when your program is running into problems such as a Race Condition.
 
 ## Important to understand about millis()
 The millis() function is a function that keep tracks of the current_time. Whenever you assign millis() to a variable, your variable will hold a snapshot of the value that millis() **had** when it was assigned to your variable. This means that a variable will always and only holds the previous_time, never the current_time, because millis() is the current_time. If you want to be using the name current_time instead of millis(), use the following declaration at the top of your code:
