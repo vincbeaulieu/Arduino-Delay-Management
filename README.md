@@ -125,4 +125,4 @@ void loop() {
 }
 ``` 
 
-Each tasks as it's own assigned previous_time and a set delay. 
+Each tasks as it's own assigned previous_time and a set delay, and will only execute when the elapsed time as passed. After which, the assiciated previous_time is reseted to the current value of millis.
