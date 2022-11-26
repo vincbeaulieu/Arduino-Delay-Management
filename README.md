@@ -12,13 +12,12 @@ Since many students are facing the same issues and struggling with code performa
 
 ## The Problem:
 Delay() acts like a wait function. Below I've provided a delay function which directly use millis()
-'''
+```
 // Avoid using Delay or Wait when possible
-
 void wait(unsigned long delay){
     unsigned long previous_time = millis(); // Save the current time
     while(millis() < previous_time + delay); // Wait until time has elapsed
 }
-'''
+```
 
 When executed, the above code will save the current_time from millis(), into the variable named *previous_time*. Then, a while loop will execute nothing, as long as the condition *current_time < previous_time + delay* is true.
