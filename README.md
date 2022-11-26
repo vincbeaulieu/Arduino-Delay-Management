@@ -1,4 +1,4 @@
-# ENGR290-ManagingDelays
+# ENGR290 - Delay Managment
 Since many students are facing the same issues and struggling with code performance, I've decided to create a short tutorial on delay management.
 
 ## Things to consider:  
