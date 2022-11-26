@@ -11,13 +11,20 @@ Since many students are facing the same issues and struggling with code performa
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
 ## The Problem:
-Delay() acts like a wait function. Below I've provided a delay function which directly use millis()
+Delay() acts like a wait function. Below I've provided an alternative to the delay function which directly use millis().
 ```C++
-// Avoid using Delay or Wait when possible
+// Avoid using sequential delay when possible
 void wait(unsigned long delay){
     unsigned long previous_time = millis(); // Save the current time
     while(millis() < previous_time + delay); // Wait until time has elapsed
 }
 ```
+When the above code is executed, we save the *current_time* given by *millis()*, into the variable named *previous_time*. Then, a while loop is execute as long as the condition *current_time < previous_time + delay* is true, emulating a "wait" in your program.
 
-When executed, the above code will save the current_time from millis(), into the variable named *previous_time*. Then, a while loop will execute nothing, as long as the condition *current_time < previous_time + delay* is true.
+## Important to understand about millis()
+The millis() function is a function that keep tracks of the current_time. Whenever you assign millis() to a variable, your variable will hold a snapshot of the value that millis() **had** when it was assigned to your variable. This means that a variable will always and only holds the previous_time, never the current_time, because millis() is the current_time. If you want to be using the name current_time instead of millis(), use the following declaration at the top of your code:
+
+```C++
+#define current_time millis()
+```
+
