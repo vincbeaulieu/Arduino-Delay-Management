@@ -11,7 +11,7 @@ Since many students are facing the same issues and struggling with code performa
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
 ## The Problem: Sequential Delay
-The delay() function acts like a wait in your program, and it is sequential. It halt the program entirely, and nothing else can be executed in the mean time. Using such delay's are bad practice has they drastically reduce the capabilities and performances of a system. Below I've provided an alternative to the delay() function which directly use millis(), ***but try to avoid using it, or using delay().***
+The delay() function acts like a wait in your program, and it is sequential. It halts the program entirely, and nothing else can be executed in the mean time. Using such delay's are bad practice as they drastically reduce the capabilities and performances of a system. Below I've provided an alternative to the delay() function which directly uses millis(), ***but try to avoid using it, or using delay().***
 ```C++
 // Avoid using sequential delay when possible
 void wait(unsigned long delay){
@@ -19,10 +19,10 @@ void wait(unsigned long delay){
     while(millis() < previous_time + delay); // Wait until time has elapsed
 }
 ```
-When the above code is executed, we save the *current_time* given by *millis()*, into the variable named *previous_time*. Then, a while loop is execute as long as the condition *current_time < previous_time + delay* is true, emulating a "wait" in your program. These are often useful when your program is running into problems such as a Race Condition.
+When the above code is executed, we save the *current_time* given by *millis()*, into the variable named *previous_time*. Then, a while loop is executed as long as the condition *current_time < previous_time + delay* is true, emulating a "wait" in your program. These are often useful when your program is running into problems such as a Race Condition.
 
 ## Important to understand about millis()
-The millis() function is a function that keep tracks of the current_time. Whenever you assign millis() to a variable, your variable will hold a snapshot of the value that millis() **<ins>had</ins>** when it was assigned to your variable. This means that a variable can only hold the previous_time, never the current_time, because millis() is the current_time. If you want to be using the name current_time instead of millis(), use the following declaration at the top of your code:
+The millis() function is a function that keep track of the current_time. Whenever you assign millis() to a variable, your variable will hold a snapshot of the value that millis() **<ins>had</ins>** when it was assigned to your variable. This means that a variable can only hold the previous_time, never the current_time, because millis() is the current_time. If you want to be using the name current_time instead of millis(), use the following declaration at the top of your code:
 
 ```C++
 #define current_time millis()
@@ -43,7 +43,7 @@ unsigned long * previous_times = new unsigned long []{
     millis(), // 0 : delay for hello()
     millis(), // 1 : delay for world()
     millis(), // 2 : delay for print()
-    //  ...
+    // ...       ^index               <------ Add more lines as needed
 };
 ```
   
@@ -51,7 +51,7 @@ unsigned long * previous_times = new unsigned long []{
 ```C++
 int hello(){
     // Assign a pointer to the index holding the previous time of this function
-    unsigned long *previous_time = &previous_times[0];
+    unsigned long *previous_time = &previous_times[0];  // <----------- Change the index here
     
     // Set your delay
     unsigned long delay = 1;
@@ -75,7 +75,7 @@ int hello(){
 ```C++
 void world(){
     // Assign a pointer to the index holding the previous time of this function
-    unsigned long *previous_time = &previous_times[1];
+    unsigned long *previous_time = &previous_times[1];  // <----------- Change the index here
     
     // Set your delay
     unsigned long delay = 2;
@@ -96,12 +96,12 @@ void world(){
 ```C++
 string print(string stuff){
     // Assign a pointer to the index holding the previous time of this function
-    unsigned long *previous_time = &previous_times[2];
+    unsigned long *previous_time = &previous_times[2];  // <----------- Change the index here
     
     // Set your delay
     unsigned long delay = 1;
     
-    // Execute if the delay is reached
+    // Check if the delay is reached
     if(millis() >= *previous_time + delay){
         
         // Place your code here
@@ -124,8 +124,5 @@ void loop() {
     print();
 }
 ``` 
-
-
-
 
 Each tasks as it's own assigned previous_time and a set delay. 
