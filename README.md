@@ -28,3 +28,104 @@ The millis() function is a function that keep tracks of the current_time. Whenev
 #define current_time millis()
 ```
 ## The Solution: Delay Traking and Management Routine
+
+You may have certain tasks that you only want to execute at a given intervals such as:
+- Take a measurement from the ultrasonic sensors after 100 ms
+- Deactivate the fans for 50 ms
+- Print results after 2000 ms
+
+However, if you are implement these tasks using a delay() or wait() function, each task will cumulated the delay of the other's. Resulting in 2150 ms of response time in your system. Which is terribly slow. Instead, periodically check if the desired delay has been meet or exceeded for a given task, and execute when it is true. Else, go the the next task and repeat.
+
+###Global Pointer Array Declaration
+```C++
+// Previous Times Tracking Array
+unsigned long * previous_times = new unsigned long []{
+    millis(), // 0 : delay for hello()
+    millis(), // 1 : delay for world()
+    millis(), // 2 : delay for print()
+    //  ...
+};
+```
+  
+###Hello task:  
+```C++
+int hello(){
+    // Assign a pointer to the index holding the previous time of this function
+    unsigned long *previous_time = &previous_times[0];
+    
+    // Set your delay
+    unsigned long delay = 1;
+    
+    // Execute if the delay is reached
+    if(millis() >= *previous_time + delay){
+        
+        // Place your code here
+        cout << "Hello" << endl;
+        
+        // Update previous time to current time
+        *previous_time = millis();
+    }
+
+    // Return something
+    return 0;
+}
+```
+  
+###World task:  
+```C++
+void world(){
+    // Assign a pointer to the index holding the previous time of this function
+    unsigned long *previous_time = &previous_times[1];
+    
+    // Set your delay
+    unsigned long delay = 2;
+    
+    // Execute if the delay is reached
+    if(millis() >= *previous_time + delay){
+        
+        // Place your code here
+        cout << "\tWorld" << endl;
+        
+        // Update previous time to current time
+        *previous_time = millis();
+    }
+}
+```
+  
+###Print task:  
+```C++
+string print(string stuff){
+    // Assign a pointer to the index holding the previous time of this function
+    unsigned long *previous_time = &previous_times[2];
+    
+    // Set your delay
+    unsigned long delay = 1;
+    
+    // Execute if the delay is reached
+    if(millis() >= *previous_time + delay){
+        
+        // Place your code here
+        cout << stuff << endl;
+        
+        // Update previous time to current time
+        *previous_time = millis();
+    }
+    
+    // Return something
+    return "More stuff";
+}
+```  
+
+###Main loop():
+```
+void loop() {
+    hello();
+    world();
+    print();
+}
+``` 
+
+
+
+
+Each tasks as it's own assigned previous_time and a set delay. 
