@@ -11,7 +11,7 @@ Since many students are facing the same issues and struggling with code performa
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
 ## The Problem: Sequential Delay
-The delay() function acts like a wait in your program, and it is sequential. It halts the program entirely, and nothing else can be executed in the mean time. Using such delay's are bad practices as they drastically reduce the capabilities and performances of a system. Below I've provided an alternative to the delay() function which directly uses millis(), ***but try to avoid using it, or using delay().***
+The delay() function acts like a wait in your program, and it is sequential. It halts the program entirely, and nothing else can be executed in the mean time. Using such delay's are bad practices as they drastically reduce the capabilities and performances of a system. Below I've provided an alternative to the delay() function which directly uses millis(), ***but try to avoid using it, or using delay() alltogether.***
 ```C++
 // Avoid using sequential delay when possible
 void wait(unsigned long delay){
