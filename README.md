@@ -117,7 +117,7 @@ string print(string stuff){
 ```  
 
 ### Main loop():
-```
+```C++
 void loop() {
     hello();
     world();
