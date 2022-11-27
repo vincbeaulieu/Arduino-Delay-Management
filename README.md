@@ -129,6 +129,6 @@ Each tasks as it's own assigned previous_time and a set delay, and will only exe
 
 ## References:  
 [[ 1 ]] https://forum.arduino.cc/t/problem-enabling-timer0-impacts-general-digital-io-toggle-rate-arduino-uno/676869/4  
-[[2]] https://forum.arduino.cc/t/which-timer-used-on-mega-for-delay-and-delaymicroseconds/420641/2  
-[[3]] https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
+[[ 2 ]] https://forum.arduino.cc/t/which-timer-used-on-mega-for-delay-and-delaymicroseconds/420641/2  
+[[ 3 ]] https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
   
