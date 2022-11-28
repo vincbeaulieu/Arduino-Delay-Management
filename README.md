@@ -39,7 +39,7 @@ However, if you are implement these tasks using a delay() or wait() function, ea
 ### Global Pointer Array Declaration
 ```C++
 // Previous Times Tracking Array
-unsigned long * previous_times = new unsigned long []{
+unsigned long * PREVIOUS_TIMES = new unsigned long []{
     millis(), // 0 : delay for hello()
     millis(), // 1 : delay for world()
     millis(), // 2 : delay for print()
@@ -51,7 +51,7 @@ unsigned long * previous_times = new unsigned long []{
 ```C++
 int hello(){
     // Assign a pointer to the index holding the previous time of this function
-    unsigned long *previous_time = &previous_times[0];  // <----------- Change the index here
+    unsigned long *previous_time = &PREVIOUS_TIMES[0];  // <----------- Change the index here
     
     // Set your delay
     unsigned long delay = 1;
@@ -62,7 +62,7 @@ int hello(){
         // Place your code here
         cout << "Hello" << endl;
         
-        // Update previous time to current time
+        // Update PREVIOUS_TIMES[0] to current time
         *previous_time = millis();
     }
 
@@ -75,7 +75,7 @@ int hello(){
 ```C++
 void world(){
     // Assign a pointer to the index holding the previous time of this function
-    unsigned long *previous_time = &previous_times[1];  // <----------- Change the index here
+    unsigned long *previous_time = &PREVIOUS_TIMES[1];  // <----------- Change the index here
     
     // Set your delay
     unsigned long delay = 2;
@@ -86,7 +86,7 @@ void world(){
         // Place your code here
         cout << "\tWorld" << endl;
         
-        // Update previous time to current time
+        // Update PREVIOUS_TIMES[1] to current time
         *previous_time = millis();
     }
 }
@@ -96,7 +96,7 @@ void world(){
 ```C++
 string print(string stuff){
     // Assign a pointer to the index holding the previous time of this function
-    unsigned long *previous_time = &previous_times[2];  // <----------- Change the index here
+    unsigned long *previous_time = &PREVIOUS_TIMES[2];  // <----------- Change the index here
     
     // Set your delay
     unsigned long delay = 1;
@@ -107,7 +107,7 @@ string print(string stuff){
         // Place your code here
         cout << stuff << endl;
         
-        // Update previous time to current time
+        // Update PREVIOUS_TIMES[2] to current time
         *previous_time = millis();
     }
     
