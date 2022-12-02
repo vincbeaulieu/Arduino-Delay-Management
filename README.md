@@ -11,7 +11,7 @@ Since many students are facing the same issues and struggling with code performa
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
 ## The Problem: CPU Being Busy at Waiting (Sequential Delay)
-The delay() or wait() function acts both by halting the program entirely, and nothing else can be executed in the mean time. Using such delay's are <ins>**BAD PRACTICES**</ins> as they drastically reduce the capabilities and performances of a system. Below is an implementation of such wait() function.
+The delay() or wait() function acts both by halting the program entirely, and nothing else can be executed in the mean time. Using such delay's are *<ins>**BAD PRACTICES**</ins>* as they drastically reduce the capabilities and performances of a system. Below is an implementation of such wait() function.
 
 ```C++
 // Avoid using wait() or delay() when possible
