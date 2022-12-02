@@ -39,19 +39,19 @@ However, if you are implement these tasks using a delay() or wait() function, ea
 ### Global Pointer Array Declaration
 ```C++
 // Previous Times Tracking Array
-unsigned long * PREVIOUS_TIMES = new unsigned long []{
-    millis(), // 0 : delay for hello()
-    millis(), // 1 : delay for world()
-    millis(), // 2 : delay for print()
-    // ...       ^index               <------ Add more lines as needed
-};
+volatile struct {
+    unsigned long hello = millis();
+    unsigned long world = millis();
+    unsigned long print = millis();
+    // ...              <------- add more lines as needed
+} previous_times;
 ```
   
 ### Hello task:  
 ```C++
 int hello(){
-    // Assign a pointer to the index holding the previous time of this function
-    unsigned long *previous_time = &PREVIOUS_TIMES[0];  // <----------- Change the index here
+    // Points/Refers to the previous time assigned to hello
+    volatile unsigned long * previous_time = &previous_times.hello;
     
     // Set your delay
     unsigned long delay = 1;
@@ -74,8 +74,8 @@ int hello(){
 ### World task:  
 ```C++
 void world(){
-    // Assign a pointer to the index holding the previous time of this function
-    unsigned long *previous_time = &PREVIOUS_TIMES[1];  // <----------- Change the index here
+    // Points/Refers to the previous time assigned to world
+    volatile unsigned long *previous_time = &previous_times.world;
     
     // Set your delay
     unsigned long delay = 2;
@@ -95,8 +95,8 @@ void world(){
 ### Print task:  
 ```C++
 string print(string stuff){
-    // Assign a pointer to the index holding the previous time of this function
-    unsigned long *previous_time = &PREVIOUS_TIMES[2];  // <----------- Change the index here
+    // Points/Refers to the previous time assigned to print
+    volatile unsigned long *previous_time = &previous_times.print;
     
     // Set your delay
     unsigned long delay = 1;
