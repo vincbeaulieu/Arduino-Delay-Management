@@ -29,7 +29,7 @@ The millis() function is a function that keeps track of the current_time. Whenev
 ```C++
 #define current_time millis()
 ```
-[Notes]: There are some exception to this. Sometime you may have to "freeze" the current_time to perform some computations that are time sensitive. And you do not want the current_time value to be changing while you are using it. Otherwise, it may lead to undesirable behavior. Therefore, you can "freeze" the current_time by taking a snapshot of it (capturing it) into a variable. Many programmers will often call this new variable the *"current_time"* which can be misleading for some people, thus you may want to named that variable captured_time instead.
+***[Notes]:*** There are some exception to this. Sometime you may have to "freeze" the current_time to perform some computations that are time sensitive. And you do not want the current_time value to be changing while you are using it. Otherwise, it may lead to undesirable behavior. Therefore, you can "freeze" the current_time by taking a snapshot of it (capturing it) into a variable. Many programmers will often call this new variable the *"current_time"* which can be misleading for some people, thus you may want to named that variable captured_time instead.
 
 ## The Solution: Delay Traking and Management Routine
 
