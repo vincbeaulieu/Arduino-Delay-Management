@@ -36,7 +36,7 @@ You may have certain tasks that you only want to execute at a given intervals su
 
 However, if you are implement these tasks using a delay() or wait() function, each task will cumulated the delay of the other's. Resulting in 2150 ms of response time in your system. Which is terribly slow. Instead, periodically check if the desired delay has been meet or exceeded for a given task, and execute when it is true. Else, go the the next task and repeat.
 
-### Global Pointer Array Declaration
+### Global Data Structure Holding the Previous Times of each Functions
 ```C++
 // Previous Times Tracking Array
 volatile struct {
