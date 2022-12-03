@@ -10,7 +10,7 @@ This short tutorial will demonstrate how to efficiently implement a delay(), wit
 [2]: https://forum.arduino.cc/t/which-timer-used-on-mega-for-delay-and-delaymicroseconds/420641/2
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
-## THE PROBLEM: CPU Being Busy at Waiting (Sequential Delay)
+## The Problem: CPU Being Busy at Waiting (Sequential Delay)
 The delay() or wait() function acts both by halting the program entirely, and nothing else can be executed in the meantime. Using such delays are \*<ins>**BAD PRACTICES**</ins>\* as they drastically reduce the capabilities and performances of a system. Below is an implementation of a wait() function using millis().  
   
 ```C++
