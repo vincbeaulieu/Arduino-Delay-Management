@@ -1,3 +1,4 @@
+<p align="justify">
 # ENGR290 - Delay Management
 This short tutorial will demonstrate how to efficiently implement a delay(), without having to compromise the response time and performances of your arduino system. 
 
@@ -130,6 +131,7 @@ void loop() {
 ``` 
 
 Each task has its own assigned previous_time and a set delay, and will only execute when the elapsed time has passed. After which, the associated previous_time is reset to the current_time held by millis().
+</p>
 
 ## References:  
 [1\] https://forum.arduino.cc/t/problem-enabling-timer0-impacts-general-digital-io-toggle-rate-arduino-uno/676869/4  
