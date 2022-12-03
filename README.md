@@ -10,6 +10,14 @@ This short tutorial will demonstrate how to efficiently implement a delay(), wit
 [2]: https://forum.arduino.cc/t/which-timer-used-on-mega-for-delay-and-delaymicroseconds/420641/2
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
+## Important to understand about millis()
+The millis() function is a function that keeps track of the current_time. Whenever you assign millis() to a variable, your variable will hold a snapshot of the value that millis() **<ins>had</ins>** when it was assigned to your variable. This means that a variable can only hold the previous_time, never the current_time, because millis() is the current_time ***[see Notes below]***. If you want to be using the name current_time instead of millis(), you can use the following declaration at the top of your code:
+
+```C++
+#define current_time millis()
+```
+***[Notes]:*** There are some exceptions to this. Sometime you may have to "freeze" the current_time to perform some computations that are time-sensitive. And you do not want the current_time value to change while you are using it. Otherwise, it may lead to undesirable behaviour. Therefore, you can "freeze" the current_time by taking a snapshot of it (capturing it) into a variable. Many programmers will often call this new variable the *"current_time"* which can be misleading for some people, thus you may want name it captured_time instead.
+
 ## The Problem: CPU Being Busy at Waiting (Sequential Delay)
 The delay() or wait() function acts both by halting the program entirely, and nothing else can be executed in the meantime. Using such delays are \*<ins>**BAD PRACTICES**</ins>\* as they drastically reduce the capabilities and performances of a system. Below is an implementation of a wait() function using millis().  
   
@@ -22,14 +30,6 @@ void wait(unsigned long delay){
 ```
   
 When the above code is executed, we save the *current_time* given by *millis()*, into the variable named *previous_time*. Then, a while loop is executed as long as the condition *current_time < previous_time + delay* is true, emulating a "wait" in your program. This type of waiting is referred as ***"Busy Waiting"***. As the name implies, you are using a CPU resource to wait, which isn't a great use of the resource. On rare occasions, a wait () or delay() function can be used to mitigate a Race Condition, or when doing isolated program testing.
-
-## Important to understand about millis()
-The millis() function is a function that keeps track of the current_time. Whenever you assign millis() to a variable, your variable will hold a snapshot of the value that millis() **<ins>had</ins>** when it was assigned to your variable. This means that a variable can only hold the previous_time, never the current_time, because millis() is the current_time ***[see Notes below]***. If you want to be using the name current_time instead of millis(), you can use the following declaration at the top of your code:
-
-```C++
-#define current_time millis()
-```
-***[Notes]:*** There are some exceptions to this. Sometime you may have to "freeze" the current_time to perform some computations that are time-sensitive. And you do not want the current_time value to change while you are using it. Otherwise, it may lead to undesirable behaviour. Therefore, you can "freeze" the current_time by taking a snapshot of it (capturing it) into a variable. Many programmers will often call this new variable the *"current_time"* which can be misleading for some people, thus you may want name it captured_time instead.
 
 ## The Solution: Delay Traking and Management Routine
 
