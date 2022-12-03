@@ -66,7 +66,7 @@ int hello(){
         // Place your code here
         cout << "Hello" << endl;
         
-        // Update PREVIOUS_TIMES[0] to current time
+        // Update previous_times.hello to current_time
         *previous_time = millis();
     }
 
@@ -90,7 +90,7 @@ void world(){
         // Place your code here
         cout << "\tWorld" << endl;
         
-        // Update PREVIOUS_TIMES[1] to current time
+        // Update previous_times.world to current_time
         *previous_time = millis();
     }
 }
@@ -111,7 +111,7 @@ string print(string stuff){
         // Place your code here
         cout << stuff << endl;
         
-        // Update PREVIOUS_TIMES[2] to current time
+        // Update previous_times.print to current_time
         *previous_time = millis();
     }
     
