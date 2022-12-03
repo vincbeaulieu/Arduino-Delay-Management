@@ -1,4 +1,3 @@
-{: style="text-align: justify" }
 # ENGR290 - Delay Management
 This short tutorial will demonstrate how to efficiently implement a delay(), without having to compromise the response time and performances of your arduino system. 
 
