@@ -34,9 +34,9 @@ When the above code is executed, we save the *current_time* given by *millis()*,
 ## The Solution: Delay Traking and Management Routine
 
 You may have certain tasks that you may want to execute at given intervals such as:
-- Take a measurement from the ultrasonic sensors after 100 ms
+- Take a measurement from the ultrasonic sensors after 100 ms (take measurement, wait 100ms, take another measurement, ...)
 - Deactivate the fans for 50 ms
-- Print results after 2000 ms
+- Print results every 2000 ms
 
 However, if you are implementing these tasks using a delay() or wait() function, each task will cumulate the delays of the others. Resulting in 2150 ms of response time in your system. Which is terribly slow. Instead, periodically check if the desired delay has been met or exceeded for a given task, and execute when it is true. Else, go to the next task and repeat.
 
@@ -58,9 +58,9 @@ int hello(){
     volatile unsigned long * previous_time = &PREVIOUS_TIMES.hello;
     
     // Set your delay
-    unsigned long delay = 1;
+    unsigned long delay = 100; // ms
     
-    // Execute if the delay is reached
+    // Execute if the delay has been reached
     if(millis() >= *previous_time + delay){
         
         // Place your code here
@@ -74,6 +74,7 @@ int hello(){
     return 0;
 }
 ```
+***[Notes]:*** This approach is sporadic. The task will first execute, then it will wait 100ms **<ins>once the execute is over</ins>**. After the delay of 100 ms has elapsed, then the task is *ready* again to be re-executed.
   
 ### World task:  
 ```C++
@@ -82,19 +83,20 @@ void world(){
     volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
     
     // Set your delay
-    unsigned long delay = 2;
+    unsigned long period = 200; // ms
     
-    // Execute if the delay is reached
-    if(millis() >= *previous_time + delay){
+    // Execute if the delay has been reached
+    if(millis() >= *previous_time + period){
         
         // Place your code here
         cout << "\tWorld" << endl;
         
-        // Update previous_times.world to current_time
-        *previous_time = millis();
+        // Update previous_times.world by adding the period
+        *previous_time += period;
     }
 }
 ```
+***[Notes]:*** This approach is periodic. It give your task a periodic nature by telling that this task *should* execute every 200 ms (soft-deadline).
   
 ### Print task:  
 ```C++
@@ -103,9 +105,9 @@ string print(string stuff){
     volatile unsigned long *previous_time = &PREVIOUS_TIMES.print;
     
     // Set your delay
-    unsigned long delay = 1;
+    unsigned long delay = 2000;
     
-    // Check if the delay is reached
+    // Check if the delay has been reached
     if(millis() >= *previous_time + delay){
         
         // Place your code here
@@ -130,6 +132,9 @@ void loop() {
 ``` 
 
 Each task has its own assigned previous_time and a set delay, and will only execute when the elapsed time has passed. After which, the associated previous_time is reset to the current_time held by millis().
+
+## Additional Informations:
+The delay management algorithm presented in this documentation is an overly simplified version of a scheduling algorithm (scheduler). However, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines.
 
 ## References:  
 [1\] https://forum.arduino.cc/t/problem-enabling-timer0-impacts-general-digital-io-toggle-rate-arduino-uno/676869/4  
