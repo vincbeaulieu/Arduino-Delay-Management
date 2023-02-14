@@ -138,5 +138,5 @@ The delay management algorithm presented in this documentation is an overly simp
 [3\] https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
   
 ## Additional Resources:
-[A\] https://www.industrialshields.com/blog/arduino-industrial-1/post/industrial-arduino-millis-vs-delay-248#:~:text=In%20a%20complex%20program%2C%20this,possible%20to%20do%20it%20simultaneously.
+[A\] https://www.industrialshields.com/blog/arduino-industrial-1/post/industrial-arduino-millis-vs-delay-248#:~:text=In%20a%20complex%20program%2C%20this,possible%20to%20do%20it%20simultaneously.  
 [B\] https://www.baeldung.com/cs/os-busy-waiting
