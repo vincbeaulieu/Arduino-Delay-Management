@@ -23,7 +23,7 @@ The delay() or wait() function acts both by halting the program entirely, and no
   
 ```C++
 // Avoid using wait() or delay() when possible
-void wait(unsigned long delay){
+void delay(unsigned long delay){
     unsigned long previous_time = millis(); // Save the current time
     while(millis() < previous_time + delay); // Wait until time has elapsed
 }
