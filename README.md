@@ -11,7 +11,7 @@ This short tutorial will demonstrate how to efficiently implement a delay(), wit
 [3]: https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
 
 ## Important to understand about millis()
-The millis() function is a function that keeps track of the current_time. Whenever you assign millis() to a variable, your variable will hold a snapshot of the value that millis() **<ins>had</ins>** when it was assigned to your variable. This means that a variable can only hold the previous_time, never the current_time, because millis() is the current_time ***[see Notes below]***. If you want to be using the name current_time instead of millis(), you can use the following declaration at the top of your code:
+The millis() function is a function that keeps track of the current_time. Whenever you assign millis() to a variable, your variable will hold a snapshot of the value that millis() **<ins>had</ins>** when it was assigned to your variable. This means that a variable can only hold the previous_time, never the current_time, because millis() is the current_time ***[see Notes under this code]***. If you want to be using the name current_time instead of millis(), you can use the following declaration at the top of your code:
 
 ```C++
 #define current_time millis()
