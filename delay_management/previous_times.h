@@ -34,7 +34,7 @@ volatile struct {
 #endif /* previous_times_h */
 
 
-// References:
+// Additional Resources:
 //
 //
 // Volatile Struct Usage:
