@@ -51,10 +51,10 @@ volatile struct {
 } PREVIOUS_TIMES;
 ```
   
-### Hello task:  
+### Sporadic Approach (Hello Task):  
 ```C++
 int hello(){
-    // Points/Refers to the previous time assigned to hello
+    // Points/Refers to the previous time assigned to hello (PREVIOUS_TIMES.hello)
     volatile unsigned long * previous_time = &PREVIOUS_TIMES.hello;
     
     // Set your delay
@@ -66,7 +66,7 @@ int hello(){
         // Place your code here
         cout << "Hello" << endl;
         
-        // Update previous_times.hello to current_time
+        // Update PREVIOUS_TIMES.hello to current_time
         *previous_time = millis();
     }
 
@@ -74,12 +74,12 @@ int hello(){
     return 0;
 }
 ```
-***[Notes]:*** This approach is sporadic. The task will first execute, then it will wait 100ms **<ins>once the execute is over</ins>**. After the delay of 100 ms has elapsed, then the task is *ready* again to be re-executed.
+***[Notes]:*** This approach is sporadic, but recurring. The task will first execute, then it will wait 100ms **<ins>once the execute is over</ins>**. After the delay of 100 ms has elapsed, then the task is *ready* again to be re-executed.
   
-### World task:  
+### Periodic Approach (World task):  
 ```C++
 void world(){
-    // Points/Refers to the previous time assigned to world
+    // Points/Refers to the previous time assigned to world (PREVIOUS_TIMES.world)
     volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
     
     // Set your delay
@@ -91,7 +91,7 @@ void world(){
         // Place your code here
         cout << "\tWorld" << endl;
         
-        // Update previous_times.world by adding the period
+        // Update PREVIOUS_TIMES.world by adding the period
         *previous_time += period;
     }
 }
@@ -101,7 +101,7 @@ void world(){
 ### Print task:  
 ```C++
 string print(string stuff){
-    // Points/Refers to the previous time assigned to print
+    // Points/Refers to the previous time assigned to print (PREVIOUS_TIMES.print)
     volatile unsigned long *previous_time = &PREVIOUS_TIMES.print;
     
     // Set your delay
@@ -113,14 +113,15 @@ string print(string stuff){
         // Place your code here
         cout << stuff << endl;
         
-        // Update previous_times.print to current_time
+        // Update PREVIOUS_TIMES.print to current_time
         *previous_time = millis();
     }
     
     // Return something
     return "More stuff";
 }
-```  
+```
+***[Notes]:*** This approach is sporadic, but recurring. The task will first execute, then it will wait 2000ms **<ins>once the execute is over</ins>**. After the delay of 2000 ms has elapsed, then the task is *ready* again to be re-executed.
 
 ### Main loop():
 ```C++
@@ -130,8 +131,6 @@ void loop() {
     print();
 }
 ``` 
-
-Each task has its own assigned previous_time and a set delay, and will only execute when the elapsed time has passed. After which, the associated previous_time is reset to the current_time held by millis().
 
 ## Additional Informations:
 The delay management algorithm presented in this documentation is an overly simplified version of a scheduling algorithm (scheduler). However, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines.
