@@ -51,56 +51,26 @@ volatile struct {
 } PREVIOUS_TIMES;
 ```
   
-### Sporadic Approach (Hello Task):  
+### Busy Waiting Approach (DON'T DO THAT!):  
 ```C++
-int hello(){
-    // Points/Refers to the previous time assigned to hello (PREVIOUS_TIMES.hello)
-    volatile unsigned long * previous_time = &PREVIOUS_TIMES.hello;
+// AVOID! This code takes 250ms of CPU resources to do nothing!
+int hello(double stuff){
     
-    // Set your delay
-    unsigned long delay = 100; // ms
+    //DO NOT USE THIS FUNCTION! (BAD PRACTICE!)
+    delay(250); // wait 250ms
     
-    // Execute if the delay has been reached
-    if(millis() >= *previous_time + delay){
-        
-        // Place your code here
-        cout << "Hello" << endl;
-        
-        // Update PREVIOUS_TIMES.hello to current_time
-        *previous_time = millis();
-    }
-
-    // Return something
+    // Does something useful
+    printf("%.2f\n", stuff);
+    
+    // Return something if needed
     return 0;
 }
 ```
-***[Notes]:*** This approach is sporadic, but recurring. The task will first execute, then it will wait 100ms **<ins>once the execute is over</ins>**. After the delay of 100 ms has elapsed, then the task is *ready* again to be re-executed.
+***[Notes]:*** This approach is called *"Busy Waiting"*, where the code takes 250ms of CPU resources to do nothing.
   
-### Periodic Approach (World task):  
+### Sporadic Approach:  
 ```C++
-void world(){
-    // Points/Refers to the previous time assigned to world (PREVIOUS_TIMES.world)
-    volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
-    
-    // Set your delay
-    unsigned long period = 200; // ms
-    
-    // Execute if the delay has been reached
-    if(millis() >= *previous_time + period){
-        
-        // Place your code here
-        cout << "\tWorld" << endl;
-        
-        // Update PREVIOUS_TIMES.world by adding the period
-        *previous_time += period;
-    }
-}
-```
-***[Notes]:*** This approach is periodic. It give your task a periodic nature by telling that this task *should* execute every 200 ms (soft-deadline).
-  
-### Print task:  
-```C++
-string print(string stuff){
+string world(double stuff){
     // Points/Refers to the previous time assigned to print (PREVIOUS_TIMES.print)
     volatile unsigned long *previous_time = &PREVIOUS_TIMES.print;
     
@@ -111,17 +81,45 @@ string print(string stuff){
     if(millis() >= *previous_time + delay){
         
         // Place your code here
-        cout << stuff << endl;
+        printf("\t\t%.2f\n", stuff);
         
         // Update PREVIOUS_TIMES.print to current_time
         *previous_time = millis();
     }
     
-    // Return something
+    // Return something if needed
     return "More stuff";
 }
 ```
-***[Notes]:*** This approach is sporadic, but recurring. The task will first execute, then it will wait 2000ms **<ins>once the execute is over</ins>**. After the delay of 2000 ms has elapsed, then the task is *ready* again to be re-executed.
+***[Notes]:*** This approach is sporadic, but recurring. The task will first execute, then release the CPU resource, then wait 2000ms before "asking" for the CPU again. After the delay of 2000 ms has elapsed, then the task is *ready* again to be re-executed.
+
+### Periodic Approach:  
+```C++
+void print(double stuff){
+    // Points/Refers to the previous time assigned to world (PREVIOUS_TIMES.world)
+    volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
+    
+    // Set your period
+    unsigned long period = 1000; // ms
+    
+    // Initiallize the next time period this task should be executed
+    unsigned long next_time = *previous_time + period;
+    
+    // Check if the next period has begun
+    if(millis() >= next_time){
+        
+        // Place your code here
+        printf("\t%.2f\n", stuff);
+        
+        // Update PREVIOUS_TIMES.world by adding the period
+        *previous_time = next_time;
+    }
+    
+    // Return something if needed
+    return;
+}
+```
+***[Notes]:*** This approach is periodic. It gives your task a periodic nature by telling that this task *should* execute every 1000 ms (soft-deadline).
 
 ### Main loop():
 ```C++
@@ -141,4 +139,6 @@ The delay management algorithm presented in this documentation is an overly simp
 [3\] https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
   
 ## Additional Resources:
-https://www.industrialshields.com/blog/arduino-industrial-1/post/industrial-arduino-millis-vs-delay-248#:~:text=In%20a%20complex%20program%2C%20this,possible%20to%20do%20it%20simultaneously.
+[A\] https://www.industrialshields.com/blog/arduino-industrial-1/post/industrial-arduino-millis-vs-delay-248#:~:text=In%20a%20complex%20program%2C%20this,possible%20to%20do%20it%20simultaneously.
+
+[B\] https://www.baeldung.com/cs/os-busy-waiting
