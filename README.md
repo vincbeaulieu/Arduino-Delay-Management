@@ -74,13 +74,13 @@ string world(double stuff){
     volatile unsigned long *previous_time = &PREVIOUS_TIMES.print;
     
     // Set your delay
-    unsigned long delay = 2000;
+    unsigned long delay = 1000;
     
     // Check if the delay has been reached
     if(millis() >= *previous_time + delay){
         
         // Place your code here
-        printf("\t\t%.2f\n", stuff);
+        printf("\t%.2f\n", stuff);
         
         // Update PREVIOUS_TIMES.print to current_time
         *previous_time = millis();
@@ -99,7 +99,7 @@ void print(double stuff){
     volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
     
     // Set your period
-    unsigned long period = 1000; // ms
+    unsigned long period = 2000; // ms
     
     // Initiallize the next time period this task should be executed
     unsigned long next_time = *previous_time + period;
@@ -108,7 +108,7 @@ void print(double stuff){
     if(millis() >= next_time){
         
         // Place your code here
-        printf("\t%.2f\n", stuff);
+        printf("\t\t%.2f\n", stuff);
         
         // Update PREVIOUS_TIMES.world by adding the period
         *previous_time = next_time;
