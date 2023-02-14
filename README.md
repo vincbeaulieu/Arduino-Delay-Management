@@ -123,9 +123,9 @@ void print(double stuff){
 ### Main loop():
 ```C++
 void loop() {
-    hello();
-    world();
-    print();
+    hello(...);
+    world(...);
+    print(...);
 }
 ``` 
 
