@@ -48,14 +48,14 @@ volatile struct {
     unsigned long world = millis();
     unsigned long print = millis();
     // ...              <------- add more lines as needed
-} previous_times;
+} PREVIOUS_TIMES;
 ```
   
 ### Hello task:  
 ```C++
 int hello(){
     // Points/Refers to the previous time assigned to hello
-    volatile unsigned long * previous_time = &previous_times.hello;
+    volatile unsigned long * previous_time = &PREVIOUS_TIMES.hello;
     
     // Set your delay
     unsigned long delay = 1;
@@ -79,7 +79,7 @@ int hello(){
 ```C++
 void world(){
     // Points/Refers to the previous time assigned to world
-    volatile unsigned long *previous_time = &previous_times.world;
+    volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
     
     // Set your delay
     unsigned long delay = 2;
@@ -100,7 +100,7 @@ void world(){
 ```C++
 string print(string stuff){
     // Points/Refers to the previous time assigned to print
-    volatile unsigned long *previous_time = &previous_times.print;
+    volatile unsigned long *previous_time = &PREVIOUS_TIMES.print;
     
     // Set your delay
     unsigned long delay = 1;
