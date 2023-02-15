@@ -16,7 +16,7 @@ The millis() function is a function that keeps track of the current_time. Whenev
 ```C++
 #define current_time millis()
 ```
-***[Notes]:*** There are some exceptions to this. Sometime you may have to "freeze" the current_time to perform some computations that are time-sensitive. And you do not want the current_time value to change while you are using it. Otherwise, it may lead to undesirable behaviour. Therefore, you can "freeze" the current_time by taking a snapshot of it (capturing it) into a variable. Many programmers will often call this new variable the *"current_time"* which can be misleading for some people, thus it is preferable to name such variable *"captured_time"*, or *"previous_time"*, instead.
+***[Notes]:*** There are some exceptions to this. Sometime you may have to "freeze" the current_time to perform some computations that are time-sensitive. And you do not want the current_time value to change while you are using it. Otherwise, it may lead to undesirable behaviour. Therefore, you can "freeze" the current_time by taking a snapshot of it (capturing it) into a variable. Many programmers will often call this new variable the *"current_time"*, which can be misleading for some people, thus it is preferable to name such variable *"captured_time"* instead.
 
 ## The Problem: CPU Being Busy at Waiting (Sequential Delay)
 The delay() or wait() function acts both by halting the program entirely, and nothing else can be executed in the meantime. Using such delays are \*<ins>**BAD PRACTICES**</ins>\* as they drastically reduce the capabilities and performances of a system. Below is an implementation of a wait() function using millis().  
