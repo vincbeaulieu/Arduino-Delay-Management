@@ -130,7 +130,7 @@ void loop() {
 ``` 
 
 ## Limitations:
-The delay management algorithm presented in this documentation is an overly simplified version of a scheduling algorithm (scheduler). It is intended for single processor only. Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines.
+The delay management algorithm presented in this documentation is an overly simplified and inspired version of a scheduling algorithm (scheduler). It is intended for single processor only. It does not have a "ready queue" but rather, a list of tasks to be executed when ready.  Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines. 
 
 ## References:  
 [1\] https://forum.arduino.cc/t/problem-enabling-timer0-impacts-general-digital-io-toggle-rate-arduino-uno/676869/4  
