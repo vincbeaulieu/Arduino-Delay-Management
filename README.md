@@ -79,7 +79,7 @@ string world(double stuff){
     // Check if the delay has been reached
     if(millis() >= *previous_time + delay){
         
-        // Place your code here
+        // Place your code here (Critical section)
         printf("\t%.2f\n", stuff);
         
         // Update PREVIOUS_TIMES.print to current_time
@@ -107,7 +107,7 @@ void print(double stuff){
     // Check if the next period has begun
     if(millis() >= next_time){
         
-        // Place your code here
+        // Place your code here (Critical section)
         printf("\t\t%.2f\n", stuff);
         
         // Update PREVIOUS_TIMES.world by adding the period
