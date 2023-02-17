@@ -48,4 +48,7 @@ volatile struct {
 // Secrets of Arduino PWM
 // https://docs.arduino.cc/tutorials/generic/secrets-of-arduino-pwm
 //
-
+//
+// PID control
+// https://www.arrow.com/en/research-and-events/articles/pid-controller-basics-and-tutorial-pid-implementation-in-arduino
+//
