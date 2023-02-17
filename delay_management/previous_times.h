@@ -45,5 +45,7 @@ volatile struct {
 // https://arduino.stackexchange.com/questions/36875/hc-sr04-distance-measuring-without-delay
 //
 //
-
+// Secrets of Arduino PWM
+// https://docs.arduino.cc/tutorials/generic/secrets-of-arduino-pwm
+//
 
