@@ -67,7 +67,7 @@ int hello(double stuff){
 ```
 ***[Notes]:*** This approach is called *"Busy Waiting"*, where the code takes 250ms of CPU resources to do nothing.
   
-### Sporadic/Aperiodic Approach:  
+### Asynchronous Approach:  
 ```C++
 string world(double stuff){
     // Points/Refers to the previous time assigned to print (PREVIOUS_TIMES.print)
@@ -90,7 +90,7 @@ string world(double stuff){
     return "More stuff";
 }
 ```
-***[Notes]:*** This approach is sporadic/aperiodic, but recurring. The task will first execute, then release the CPU resource, then wait 2000ms before "asking" for the CPU again. After the delay of 2000 ms has elapsed, then the task is *ready* again to be re-executed. Overtime, this task will drift accross the hyperperiod (LCM of all periodic task), as it cumulates the delay of its own execution on top of its own delay. Thus, why it's aperiodic nature. [[4]]  
+***[Notes]:*** This approach is recurrent, but asynchronous. The task will first execute, then release the CPU resource, then wait 2000ms before "asking" for the CPU again. After the delay of 2000 ms has elapsed, then the task is *ready* again to be re-executed. Overtime, this task will drift accross the hyperperiod (LCM of all periodic task), as it cumulates the delay of its own execution on top of its own delay. Thus, why it's asynchronous nature. [[4]]  
 
 [4]: https://www.geeksforgeeks.org/tasks-in-real-time-systems/  
 
