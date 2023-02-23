@@ -132,7 +132,7 @@ void loop() {
 ## Limitations:
 The delay management algorithm presented in this documentation is an overly simplified and inspired version of a scheduling algorithm (scheduler), specifically a Static Scheduling Algorithm [[4]]. It is intended for single processor only. It does not have a "ready queue" but rather, a list of tasks to be executed when ready.  Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines (no priority queue).
 
-[4] https://stackoverflow.com/questions/40069587/advantages-and-disadvantages-with-static-and-dynamic-scheduling
+[4]: https://stackoverflow.com/questions/40069587/advantages-and-disadvantages-with-static-and-dynamic-scheduling
 
 ## References:  
 [1\] https://forum.arduino.cc/t/problem-enabling-timer0-impacts-general-digital-io-toggle-rate-arduino-uno/676869/4  
