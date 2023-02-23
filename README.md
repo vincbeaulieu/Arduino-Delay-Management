@@ -130,12 +130,15 @@ void loop() {
 ``` 
 
 ## Limitations:
-The delay management algorithm presented in this documentation is an overly simplified and inspired version of a scheduling algorithm (scheduler). It is intended for single processor only. It does not have a "ready queue" but rather, a list of tasks to be executed when ready.  Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines (no priority queue).
+The delay management algorithm presented in this documentation is an overly simplified and inspired version of a scheduling algorithm (scheduler), specifically a Static Scheduling Algorithm [[4]]. It is intended for single processor only. It does not have a "ready queue" but rather, a list of tasks to be executed when ready.  Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines (no priority queue).
+
+[4] https://stackoverflow.com/questions/40069587/advantages-and-disadvantages-with-static-and-dynamic-scheduling
 
 ## References:  
 [1\] https://forum.arduino.cc/t/problem-enabling-timer0-impacts-general-digital-io-toggle-rate-arduino-uno/676869/4  
 [2\] https://forum.arduino.cc/t/which-timer-used-on-mega-for-delay-and-delaymicroseconds/420641/2  
 [3\] https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
+[4\] https://stackoverflow.com/questions/40069587/advantages-and-disadvantages-with-static-and-dynamic-scheduling  
   
 ## Additional Resources:
 [A\] https://www.industrialshields.com/blog/arduino-industrial-1/post/industrial-arduino-millis-vs-delay-248#:~:text=In%20a%20complex%20program%2C%20this,possible%20to%20do%20it%20simultaneously.  
