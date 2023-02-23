@@ -67,7 +67,7 @@ int hello(double stuff){
 ```
 ***[Notes]:*** This approach is called *"Busy Waiting"*, where the code takes 250ms of CPU resources to do nothing.
   
-### Sporadic Approach:  
+### Sporadic/Aperiodic Approach:  
 ```C++
 string world(double stuff){
     // Points/Refers to the previous time assigned to print (PREVIOUS_TIMES.print)
@@ -90,7 +90,9 @@ string world(double stuff){
     return "More stuff";
 }
 ```
-***[Notes]:*** This approach is sporadic, but recurring. The task will first execute, then release the CPU resource, then wait 2000ms before "asking" for the CPU again. After the delay of 2000 ms has elapsed, then the task is *ready* again to be re-executed.
+***[Notes]:*** This approach is sporadic/aperiodic, but recurring. The task will first execute, then release the CPU resource, then wait 2000ms before "asking" for the CPU again. After the delay of 2000 ms has elapsed, then the task is *ready* again to be re-executed. Overtime, this task will drift accross the hyperperiod (LCM of all periodic task), as it cumulates the delay of its own execution on top of its own delay. Thus, why it's aperiodic nature. [[4]]  
+
+[4]: https://www.geeksforgeeks.org/tasks-in-real-time-systems/  
 
 ### Periodic Approach:  
 ```C++
@@ -130,16 +132,18 @@ void loop() {
 ``` 
 
 ## Limitations:
-The delay management algorithm presented here is an overly simplified and inspired version of mostly a *static* scheduling algorithm (scheduler) [[4]]. It is intended for single processor only. It does not have a "ready queue", but rather a list of tasks to be executed when ready.  Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines (no priority queue).
+The delay management algorithm presented here is an overly simplified and inspired version of mostly a *static* scheduling algorithm (scheduler) [[5]]. It is intended for single processor only. It does not have a "ready queue", but rather a list of tasks to be executed when ready.  Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines (no priority queue).
 
-[4]: https://stackoverflow.com/questions/40069587/advantages-and-disadvantages-with-static-and-dynamic-scheduling
+[5]: https://stackoverflow.com/questions/40069587/advantages-and-disadvantages-with-static-and-dynamic-scheduling
 
 ## References:  
 [1\] https://forum.arduino.cc/t/problem-enabling-timer0-impacts-general-digital-io-toggle-rate-arduino-uno/676869/4  
 [2\] https://forum.arduino.cc/t/which-timer-used-on-mega-for-delay-and-delaymicroseconds/420641/2  
 [3\] https://learn.sparkfun.com/tutorials/data-types-in-arduino/all  
-[4\] https://stackoverflow.com/questions/40069587/advantages-and-disadvantages-with-static-and-dynamic-scheduling  
+[4\] https://www.geeksforgeeks.org/tasks-in-real-time-systems/  
+[5\] https://stackoverflow.com/questions/40069587/advantages-and-disadvantages-with-static-and-dynamic-scheduling  
   
 ## Additional Resources:
 [A\] https://www.industrialshields.com/blog/arduino-industrial-1/post/industrial-arduino-millis-vs-delay-248#:~:text=In%20a%20complex%20program%2C%20this,possible%20to%20do%20it%20simultaneously.  
-[B\] https://www.baeldung.com/cs/os-busy-waiting
+[B\] https://www.baeldung.com/cs/os-busy-waiting  
+  
