@@ -50,5 +50,9 @@ volatile struct {
 //
 //
 // PID control
-// https://www.arrow.com/en/research-and-events/articles/pid-controller-basics-and-tutorial-pid-implementation-in-arduino
+// https://www.arrow.com/en/research-and-events/articles/pid-controller-basics-and-tutorial-pid-implementation-in-arduino  
 //
+// How to interpret IMU Sensor data  
+// https://www.allaboutcircuits.com/technical-articles/how-to-interpret-IMU-sensor-data-dead-reckoning-rotation-matrix-creation/  
+//
+
