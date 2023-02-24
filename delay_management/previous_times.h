@@ -40,14 +40,11 @@ volatile struct {
 // Volatile Struct Usage:
 // https://stackoverflow.com/questions/246127/why-is-volatile-needed-in-c/
 //
-//
 // US sensor without delay
 // https://arduino.stackexchange.com/questions/36875/hc-sr04-distance-measuring-without-delay
 //
-//
 // Secrets of Arduino PWM
 // https://docs.arduino.cc/tutorials/generic/secrets-of-arduino-pwm
-//
 //
 // PID control
 // https://www.arrow.com/en/research-and-events/articles/pid-controller-basics-and-tutorial-pid-implementation-in-arduino  
