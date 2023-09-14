@@ -69,9 +69,9 @@ volatile struct {
   
 ### Asynchronous Approach:  
 ```C++
-string print(double stuff){
-    // Points/Refers to the previous time assigned to "print" (PREVIOUS_TIMES.print)
-    volatile unsigned long *previous_time = &PREVIOUS_TIMES.print;
+string world(double stuff){
+    // Points/Refers to the previous time assigned to "world" (PREVIOUS_TIMES.world)
+    volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
     
     // Set your delay
     unsigned long delay = 1000;
@@ -82,7 +82,7 @@ string print(double stuff){
         // Place your code here (Critical section)
         printf("\t%.2f\n", stuff);
         
-        // Update PREVIOUS_TIMES.print to current_time
+        // Update PREVIOUS_TIMES.world to current_time
         *previous_time = millis();
     }
     
@@ -96,9 +96,9 @@ string print(double stuff){
 
 ### Periodic Approach:  
 ```C++
-void world(double stuff){
-    // Points/Refers to the previous time assigned to "world" (PREVIOUS_TIMES.world)
-    volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
+void print(double stuff){
+    // Points/Refers to the previous time assigned to "print" (PREVIOUS_TIMES.print)
+    volatile unsigned long *previous_time = &PREVIOUS_TIMES.print;
     
     // Set your period
     unsigned long period = 2000; // ms
@@ -112,7 +112,7 @@ void world(double stuff){
         // Place your code here (Critical section)
         printf("\t\t%.2f\n", stuff);
         
-        // Update PREVIOUS_TIMES.world by adding the period
+        // Update PREVIOUS_TIMES.print by adding the period
         *previous_time = next_time;
     }
     
