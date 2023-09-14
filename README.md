@@ -70,7 +70,7 @@ volatile struct {
 ### Asynchronous Approach:  
 ```C++
 string world(double stuff){
-    // Points/Refers to the previous time assigned to print (PREVIOUS_TIMES.print)
+    // Points/Refers to the previous time assigned to "print" (PREVIOUS_TIMES.print)
     volatile unsigned long *previous_time = &PREVIOUS_TIMES.print;
     
     // Set your delay
@@ -97,7 +97,7 @@ string world(double stuff){
 ### Periodic Approach:  
 ```C++
 void print(double stuff){
-    // Points/Refers to the previous time assigned to world (PREVIOUS_TIMES.world)
+    // Points/Refers to the previous time assigned to "world" (PREVIOUS_TIMES.world)
     volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
     
     // Set your period
