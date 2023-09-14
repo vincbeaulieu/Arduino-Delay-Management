@@ -30,7 +30,23 @@ void delay(unsigned long delay){
 ```
   
 When the above code is executed, we save the *current_time* given by *millis()*, into the variable named *previous_time*. Then, a while loop is executed as long as the condition *current_time < previous_time + delay* is true, emulating a "wait" in your program. This type of waiting is referred as ***"Busy Waiting"***. As the name implies, you are using a CPU resource to wait, which isn't a great use of the resource. On rare occasions, a wait () or delay() function can be used to mitigate a Race Condition, or when doing isolated program testing.
-
+  
+### Busy Waiting Approach (DON'T DO THAT!):  
+```C++
+// AVOID! This code takes 250ms of CPU resources to do nothing!
+int hello(double stuff){
+    //DO NOT USE THIS FUNCTION! (BAD PRACTICE!)
+    delay(250); // wait 250ms
+    
+    // Does something useful
+    printf("%.2f\n", stuff);
+    
+    // Return something if needed
+    return 0;
+}
+```
+***[Notes]:*** This approach is called *"Busy Waiting"*, where the code takes 250ms of CPU resources to do nothing.
+  
 ## The Solution: Delay Traking and Management Routine
 
 You may have certain tasks that you may want to execute at given intervals such as:
@@ -50,22 +66,6 @@ volatile struct {
     // ...              <------- add more lines as needed
 } PREVIOUS_TIMES;
 ```
-  
-### Busy Waiting Approach (DON'T DO THAT!):  
-```C++
-// AVOID! This code takes 250ms of CPU resources to do nothing!
-int hello(double stuff){
-    //DO NOT USE THIS FUNCTION! (BAD PRACTICE!)
-    delay(250); // wait 250ms
-    
-    // Does something useful
-    printf("%.2f\n", stuff);
-    
-    // Return something if needed
-    return 0;
-}
-```
-***[Notes]:*** This approach is called *"Busy Waiting"*, where the code takes 250ms of CPU resources to do nothing.
   
 ### Asynchronous Approach:  
 ```C++
