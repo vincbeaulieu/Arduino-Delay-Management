@@ -1,6 +1,5 @@
 //
 //  header.h
-//  test
 //
 //  Created by Vincent Beaulieu on 2023-02-14.
 //
