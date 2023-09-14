@@ -1,6 +1,5 @@
 //
 //  main.cpp
-//  test
 //
 //  Created by Vincent Beaulieu on 2022-11-25.
 //
