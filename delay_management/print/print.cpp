@@ -8,8 +8,8 @@
 #include "print.h"
 
 void print(double stuff){
-    // Points/Refers to the previous time assigned to world (PREVIOUS_TIMES.world)
-    volatile unsigned long *previous_time = &PREVIOUS_TIMES.world;
+    // Points/Refers to the previous time assigned to "print" (PREVIOUS_TIMES.print)
+    volatile unsigned long *previous_time = &PREVIOUS_TIMES.print;
 
     // Set your period
     unsigned long period = 2000; // ms
@@ -23,7 +23,7 @@ void print(double stuff){
         // Place your code here
         printf("\t\t  %.2f\n", stuff);
         
-        // Update PREVIOUS_TIMES.world by adding the period
+        // Update PREVIOUS_TIMES.print by adding the period
         *previous_time = next_time;
     }
 
