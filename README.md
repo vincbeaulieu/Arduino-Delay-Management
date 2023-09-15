@@ -132,7 +132,7 @@ void loop() {
 ``` 
 
 ## Limitations:
-The delay management algorithm presented here is an overly simplified and inspired version of mostly a *static* scheduling algorithm (scheduler) [[5]]. It is intended for single processor only. It does not have a "ready queue", but rather a list of tasks to be executed when ready.  Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines (no priority queue).
+The delay management algorithm presented here is a simplified and inspired version of a *static* scheduling algorithm (scheduler) [[5]]. It is intended for single processor only. It does not have a "ready queue", but rather a list of tasks to be executed when ready.  Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines (no priority queue).
 
 [5]: https://stackoverflow.com/questions/40069587/advantages-and-disadvantages-with-static-and-dynamic-scheduling
 
