@@ -129,7 +129,8 @@ void loop() {
     world(...);
     print(...);
 }
-``` 
+```
+This main loop simply holds the list of tasks to be performed. The program will loop through each indefinitely.
 
 ## Limitations:
 The delay management algorithm presented here is a simplified and inspired version of a *static* scheduling algorithm (scheduler) [[5]]. It is intended for single processor only. It does not have a "ready queue", but rather a list of tasks to be executed when ready.  Moreover, the algorithm presented in this documentation only handles soft-deadlines, it is not designed for hard-deadlines (no priority queue).
